@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang= "en-us">
+    <head>
+        <meta charset="UTF-8">
+        <title>The Psychic Game</title>
+    </head>
+<body>
+    <!--Image and Sound Source-->
+        <img src= /Users/jaclynhardy/Documents/Bootcamp/Projects/Psychic-Game/assets/images/Which-Type-of-Psychic-Power-do-You-Have.jpg>
+
+        <audio controls>
+
+            <source src="https://www.youtube.com/watch?v=COMwjWOFuWY" type="audio/mpeg">
+          
+          </audio>
+    <!--Insert scr for Javascripts and Css-->
+
+    <link rel="stylesheet" type="text/css" href="assets/stlye.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!--Content for Game-->
+<div id= "game">
+    <h1>The Psychic Game</h1>
+    <p>GUESS WHAT LETTER I'M THINKING OF!</p>
+    <p>Wins:</p>
+    <p>Losses:</p>
+    <p>Guesses Left:</p>
+    <p>Your Guesses so far:</p>
+</div>
+
+    <script type="text/javascript">
+
+    var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",]; 
+
+    var wins = 0;
+    var losses = 0;
+    var numGuesses = 10;
+    var guessLetters = [];
+
+    document.onkeyup = function(event) {
+
+        var userGuess = event.key;
+
+        var computerGuess = letters[Math.floor(Math.random() * letters.length)];
+
+        var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+        if (options.indoxOf(userGuess) > -1) {
+
+            if (userGuess === computerGuess) {
+                wins++;
+                numGuesses = 10;
+                guessLetters = [];
+            }
+
+            if (userGuess != computerGuess) {
+                numGuesses --;
+                guessLetters.push(userGuess);
+            }
+
+            if (numGuesses === 0) {
+                losses ++;
+                numGuesses = 10;
+                guessLetters = [];
+            }
+
+        var html = 
+			"<h1> The Psychic Game </h1>" +
+			"<p>GUESS WHAT LETTER I'M THINKING OF!</p>" +
+			"<p>Wins: " + wins + "</p>" +
+			"<p>Losses: " + losses + "</p>" +
+			"<p>Guesses Left: " + numGuesses + "</p>" +
+			"<p>Your Guesses so far: " + guessLetters.join(", ") + "</p>";
+
+			document.querySelector("#game").innerHTML = html;
+
+    }
+    
+    };
+
+
+    
+    </script>
+
+</body>
+</html>
