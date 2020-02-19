@@ -1,7 +1,10 @@
 body {
     color: purple;
-    margin: solid black;
-    padding: 10px;
+    border: solid black 10px;
+    padding: 5px;
+    margin: 10px;
+    text-align: justify;
+
 }
 
 
@@ -10,4 +13,10 @@ body {
     margin: solid white;
     padding: 5px;
 
+}
+
+.psych {
+    overflow: hidden;
+    width: 600px;
+    height: 500px;
 }

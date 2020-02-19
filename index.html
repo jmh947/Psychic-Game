@@ -1,73 +1,75 @@
 <!DOCTYPE html>
-<html lang= "en-us">
-    <head>
-        <meta charset="UTF-8">
-        <title>The Psychic Game</title>
-    </head>
-<body>
-    <!--Image and Sound Source-->
-        <img src= /Users/jaclynhardy/Documents/Bootcamp/Projects/Psychic-Game/assets/images/Which-Type-of-Psychic-Power-do-You-Have.jpg>
-
-        <audio controls>
-
-            <source src="https://www.youtube.com/watch?v=COMwjWOFuWY" type="audio/mpeg">
-          
-          </audio>
-    <!--Insert scr for Javascripts and Css-->
-
-    <link rel="stylesheet" type="text/css" href="assets/stlye.css">
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+    <title>Psychic Game</title>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+</head>
+<body>
 
-  <!--Content for Game-->
-<div id= "game">
-    <h1>The Psychic Game</h1>
-    <p>GUESS WHAT LETTER I'M THINKING OF!</p>
-    <p>Wins:</p>
-    <p>Losses:</p>
-    <p>Guesses Left:</p>
-    <p>Your Guesses so far:</p>
-</div>
+    <img class= "psych" src= /Users/jaclynhardy/Documents/Bootcamp/Projects/Psychic-Game/assets/images/Which-Type-of-Psychic-Power-do-You-Have.jpg>
 
-    <script type="text/javascript">
+    <audio controls>
 
-    var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",]; 
+        <source src= "https://www.youtube.com/watch?v=COMwjWOFuWY"type="audio/mpeg">
 
-    var wins = 0;
-    var losses = 0;
-    var numGuesses = 10;
-    var guessLetters = [];
+      </audio>
 
-    document.onkeyup = function(event) {
+	<div id="game">
+		<h1> The Psychic Game </h1>
+		<p>Guess what letter I'm thinking of!</p>
+		<p>Wins:</p>
+		<p>Losses:</p>
+		<p>Guesses Left:</p>
+		<p>Your Guesses so far:</p>
+	</div>
 
-        var userGuess = event.key;
+	<script type="text/javascript">
+		
+		 var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
 
-        var computerGuess = letters[Math.floor(Math.random() * letters.length)];
+		 var wins = 0;
+		 var losses = 0;
+		 var numGuesses = 9;
+		 var guessLetters = [];
 
-        var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+		 document.onkeyup = function(event) {
 
-        if (options.indoxOf(userGuess) > -1) {
+		 	var userGuess = event.key;
 
-            if (userGuess === computerGuess) {
-                wins++;
-                numGuesses = 10;
+		 	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+		 	var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
+             
+
+
+			if (options.indexOf(userGuess) > -1) {
+
+				if (userGuess === computerGuess) {
+					wins++;
+					numGuesses = 10;
+					guessLetters = [];
+				}
+
+				if (userGuess != computerGuess) {
+					numGuesses --;
+					guessLetters.push(userGuess);
+				}
+
+				if (numGuesses === 0) {
+
+				numGuesses = 10;
+				losses ++;
                 guessLetters = [];
-            }
+                }
+                
+                   
+			}
 
-            if (userGuess != computerGuess) {
-                numGuesses --;
-                guessLetters.push(userGuess);
-            }
-
-            if (numGuesses === 0) {
-                losses ++;
-                numGuesses = 10;
-                guessLetters = [];
-            }
-
-        var html = 
+			var html = 
 			"<h1> The Psychic Game </h1>" +
-			"<p>GUESS WHAT LETTER I'M THINKING OF!</p>" +
+			"<p>Guess what letter I'm thinking of!</p>" +
 			"<p>Wins: " + wins + "</p>" +
 			"<p>Losses: " + losses + "</p>" +
 			"<p>Guesses Left: " + numGuesses + "</p>" +
@@ -75,13 +77,10 @@
 
 			document.querySelector("#game").innerHTML = html;
 
-    }
-    
-    };
+			
+			}
 
-
-    
-    </script>
+	</script>
 
 </body>
 </html>
